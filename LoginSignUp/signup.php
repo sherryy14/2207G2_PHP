@@ -59,7 +59,13 @@
 
 <?php
 include "config.php";
+session_start();
 
+if(isset($_SESSION['user'])){
+    echo "<script> 
+        window.location.href = 'index.php'
+    </script>";
+}
 if (isset($_POST['signup'])) {
 
     $fname = $_POST['fname'];
@@ -70,9 +76,9 @@ if (isset($_POST['signup'])) {
 
    
 
-    if ($conn) {
-        echo "Connected";
-    }
+    // if ($conn) {
+    //     echo "Connected";
+    // }
 
 
     $users = "SELECT * FROM `users` WHERE `username`= '$uname' OR `email` =' $email'";

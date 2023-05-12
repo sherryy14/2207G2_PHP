@@ -3,7 +3,7 @@ session_start();
 
 if(isset($_POST['logout'])){
 
-    if(!isset($_SESSION['user'])){
+    if(!isset($_SESSION['user']) || !isset($_SESSION['email'])){
         echo "<script> 
             window.location.href = 'login.php'
       </script>";
@@ -28,7 +28,9 @@ if(isset($_POST['logout'])){
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome <?php echo  $_SESSION['user'] ?></h1>
+    <h1>Welcome <?php echo  $_SESSION['fname']; echo $_SESSION['lname']  ?></h1>
+    <h1>Email <?php echo  $_SESSION['email'] ?></h1>
+    <h1>Username <?php echo  $_SESSION['user'] ?></h1>
 
     <form  method="post">
         <input type="submit" value="Logout" name='logout'>

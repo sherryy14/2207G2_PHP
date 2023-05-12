@@ -42,7 +42,14 @@
 
 <?php
 include "config.php";
+
 session_start();
+
+if(isset($_SESSION['user'])){
+    echo "<script> 
+        window.location.href = 'index.php'
+    </script>";
+}
 
 if(isset($_POST['login'])){
 
@@ -55,7 +62,11 @@ if(isset($_POST['login'])){
     $row = mysqli_fetch_assoc($result);
     print_r($row);
 
+
+    $_SESSION['fname'] = $row['firstname'];
+    $_SESSION['lname'] = $row['lastname'];
     $_SESSION['user'] = $row['username'];
+    $_SESSION['email'] = $row['email'];
     
 
 $users = mysqli_num_rows($result);
@@ -69,11 +80,6 @@ if($users == 1 ){
 }else{
     echo "<script>document.getElementById('invalid').innerText = 'User Not Registered' </script>";
 }
-
-
-
-
-
 
 
 }
